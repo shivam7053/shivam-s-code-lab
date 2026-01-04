@@ -2,6 +2,7 @@
 
 import { Card, CardBody, CardHeader, Chip } from "@heroui/react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { BlogPost } from "./types";
 import { getOptimizedImageUrl } from "./image-utils";
 
@@ -9,14 +10,35 @@ interface BlogListProps {
   blogs: BlogPost[];
 }
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
 export const BlogList = ({ blogs }: BlogListProps) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <motion.div 
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
       {blogs.map((blog) => {
         const coverImage = getOptimizedImageUrl(blog.coverImage);
         
         return (
-        <Link key={blog.id} href={`/blog/${blog.slug}`} className="block h-full">
+        <motion.div key={blog.id} variants={item} className="h-full">
+          <Link href={`/blog/${blog.slug}`} className="block h-full">
           <Card className="h-full shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer border border-transparent hover:border-primary/20">
             {coverImage && (
               <div className="w-full h-48 overflow-hidden relative bg-default-100">
@@ -39,9 +61,10 @@ export const BlogList = ({ blogs }: BlogListProps) => {
               <p className="text-default-500 line-clamp-3">{blog.excerpt}</p>
             </CardBody>
           </Card>
-        </Link>
+          </Link>
+        </motion.div>
       );
       })}
-    </div>
+    </motion.div>
   );
 };
