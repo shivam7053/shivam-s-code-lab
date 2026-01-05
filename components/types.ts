@@ -1,28 +1,37 @@
+export type Category =
+  | 'horror'
+  | 'romantic'
+  | 'government-jobs'
+  | 'tech-space'
+  | 'private-jobs';
+
 export interface BlogTopic {
   id: string;
   title: string;
-  content: string; // This will store Markdown or HTML content
-  order: number;   // To sort topics within a blog (1, 2, 3...)
+  content: string; // Markdown or HTML content
+  order: number;   // Topic order inside a blog (1, 2, 3...)
 }
 
 export interface BlogPost {
   id: string;
-  slug: string;    // URL friendly name (e.g., "mastering-sql-joins")
+  slug: string;     // URL-friendly name (e.g., "mastering-sql-joins")
   title: string;
-  excerpt: string; // Short description for cards
+  excerpt: string;  // Short description for cards
   coverImage?: string;
-  
-  createdAt: number; // Unix timestamp
+
+  category: Category; // ✅ Added category field
+
+  createdAt: number;  // Unix timestamp
   updatedAt: number;
-  
+
   tags: string[];
-  topics: BlogTopic[]; // The structured contenjalt you requested
-  
-  // SEO Specific Fields
+  topics: BlogTopic[]; // Structured content
+
+  // SEO Fields
   seoTitle?: string;
   seoDescription?: string;
-  seoKeywords?: string[]; // For meta keywords
-  
+  seoKeywords?: string[];
+
   // Publishing Status
   published: boolean;
 }
