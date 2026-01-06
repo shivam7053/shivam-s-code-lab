@@ -44,7 +44,12 @@ export const BlogList = ({ blogs }: BlogListProps) => {
               <div className="w-full h-48 overflow-hidden relative bg-default-100">
                 {/* Using standard img tag for external GDrive links to avoid Next.js config complexity */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={coverImage} alt={blog.title} className="w-full h-full object-cover" />
+                <img 
+                  src={coverImage} 
+                  alt={blog.title} 
+                  className="w-full h-full object-cover" 
+                  referrerPolicy="no-referrer"
+                />
               </div>
             )}
             <CardHeader className="pb-0 pt-4 px-4 flex-col items-start">

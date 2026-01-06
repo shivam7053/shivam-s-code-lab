@@ -2,7 +2,7 @@ import { db } from "./firebase";
 import { collection, getDocs, query, where, orderBy, limit, doc, getDoc, setDoc, addDoc } from "firebase/firestore";
 import { BlogPost } from "./types";
 
-const BLOG_COLLECTION = "blogs";
+const BLOG_COLLECTION = "posts";
 
 // Fetch all published blogs for the main page
 export const getAllPublishedBlogs = async (): Promise<BlogPost[]> => {
