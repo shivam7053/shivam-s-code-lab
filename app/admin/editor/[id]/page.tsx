@@ -17,10 +17,6 @@ import {
 
 /* ------------------ Category Options ------------------ */
 const CATEGORIES: { key: Category; label: string }[] = [
-  { key: "horror", label: "Horror" },
-  { key: "romantic", label: "Romantic" },
-  { key: "government-jobs", label: "Government Jobs" },
-  { key: "private-jobs", label: "Private Jobs" },
   { key: "tech-space", label: "Tech Space" },
 ];
 
@@ -32,6 +28,7 @@ const EMPTY_BLOG: Partial<BlogPost> = {
   category: "tech-space",
   published: false,
   topics: [],
+  resources: "",
   seoTitle: "",
   seoDescription: "",
   seoKeywords: [],
@@ -190,6 +187,15 @@ export default function BlogEditor() {
                 value={blog.coverImage || ""}
                 onValueChange={(val) =>
                   setBlog({ ...blog, coverImage: val })
+                }
+              />
+
+              <Input
+                label="Resources Link (GDrive)"
+                placeholder="https://drive.google.com/..."
+                value={blog.resources || ""}
+                onValueChange={(val) =>
+                  setBlog({ ...blog, resources: val })
                 }
               />
 

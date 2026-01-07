@@ -1,9 +1,7 @@
 import { getBlogBySlug } from "../../../components/db";
-import { Hero } from "../../../components/hero";
-import { TopicViewer } from "../../../components/topic-viewer";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { TOCSetter } from "../../../components/toc-setter";
+import { BlogPageContent } from "./page-content";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -41,21 +39,5 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  return (
-    <div className="min-h-screen pb-20">
-      {/* Set the topics for the sidebar */}
-      <TOCSetter topics={blog.topics} />
-
-      <Hero 
-        title={blog.title} 
-        subtitle={blog.excerpt} 
-        image={blog.coverImage}
-      />
-
-      <div className="max-w-4xl mx-auto px-6 mt-8">
-        {/* Render the topics */}
-        <TopicViewer topics={blog.topics} />
-      </div>
-    </div>
-  );
+  return <BlogPageContent blog={blog} />;
 }

@@ -1,9 +1,4 @@
-export type Category =
-  | 'horror'
-  | 'romantic'
-  | 'government-jobs'
-  | 'tech-space'
-  | 'private-jobs';
+export type Category ='tech-space';
 
 export interface BlogTopic {
   id: string;
@@ -26,6 +21,7 @@ export interface BlogPost {
 
   tags: string[];
   topics: BlogTopic[]; // Structured content
+  resources?: string; // Optional GDrive link for notes
 
   // SEO Fields
   seoTitle?: string;
